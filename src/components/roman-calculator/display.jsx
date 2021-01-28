@@ -3,7 +3,7 @@ export default function Display(props) {
     
 
     return (
-        <div className='display'>
+        <div className='display-content'>
             {props.children}
         </div>
     )

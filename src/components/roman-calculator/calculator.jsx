@@ -3,7 +3,9 @@ import Display from "./display";
 import Button from "./button";
 import MathFunctions from "../../utils/math-functions";
 import "../../calculator.css";
+
 export default function RomanCalculator(props) {
+  let errorText = "*Número negativo inválido*";
   function convertToRoman() {
     let arabic = displayNumber;
     let roman = "";
@@ -46,6 +48,7 @@ export default function RomanCalculator(props) {
     SHARE,
   ] = MathFunctions();
   const [displayNumber, setDisplayNumber] = useState("0");
+  const [displayOp, setDisplayOp] = useState("");
   const [n1, setN1] = useState("0");
   const [n2, setN2] = useState(null);
   const [op, setOp] = useState(null);
@@ -63,9 +66,10 @@ export default function RomanCalculator(props) {
   }
 
   function opAdd(op) {
-    if (op !== null) {
+    if (op !== null && displayNumber !== "0") {
       setOp(op);
       calculateAction();
+      setDisplayOp(op);
       return;
     }
 
@@ -76,57 +80,134 @@ export default function RomanCalculator(props) {
       setN2(null);
     }
   }
-
   function calculateAction() {
     if (n2 === null) {
       return;
     }
     const result = calculate(parseInt(n1), parseInt(n2), op);
-    // if(result > 0 && op !== null) {
-    //   setDisplayNumber('0')
-    // }
     if (result > 0) {
-      setN1(result)
-      setN2(null)
-      setDisplayNumber(result);
+      setN1(result);
+      setN2(null);
+      setDisplayNumber(parseInt(result));
+      setDisplayOp("");
     } else {
-      setDisplayNumber("Número negativo inválido.");
+      setDisplayNumber(errorText);
+      setDisplayOp(null);
     }
-  
   }
   function clean() {
     setDisplayNumber("0");
-
+    setDisplayOp("");
     setN1("0");
     setN2(null);
     setOp(null);
   }
 
   return (
-    <div className="calculator">
-      <div className="calculator-displays">
-        <div className="roman-display">
-          <Display children={convertToRoman()} />
+    <>
+      <div className="calculator">
+        <div className="calculator-displays">
+          <div className="display roman-display">
+            {displayNumber === errorText && (
+              <Display children="Algum problema aconteceu" />
+            )}
+            {displayNumber && displayNumber !== errorText && (
+              <Display>
+                <div></div>
+                <div>{convertToRoman()}</div>
+              </Display>
+            )}
+          </div>
+          <div className="display arabic-display">
+            <Display>
+              <div>
+                <strong>{displayOp}</strong>
+              </div>
+              <div>{displayNumber}</div>
+            </Display>
+          </div>
         </div>
-        <div className="arabic-display">
-          <Display children={displayNumber} />
+        <div className="buttons">
+          <Button
+            className="button"
+            number={"I"}
+            onClick={() => numberAdd("1")}
+            style={{ borderRadius: "1rem 0 0 0" }}
+          />
+          <Button
+            className="button"
+            number={"V"}
+            onClick={() => numberAdd("5")}
+          />
+          <Button
+            className="button"
+            number={"X"}
+            onClick={() => numberAdd("10")}
+          />
+          <Button
+            className="button"
+            number={"L"}
+            onClick={() => numberAdd("50")}
+            style={{ borderRadius: "0 1rem 0 0" }}
+          />
+          <Button
+            className="button"
+            number={"C"}
+            onClick={() => numberAdd("100")}
+          />
+          <Button
+            className="button"
+            number={"D"}
+            onClick={() => numberAdd("500")}
+          />
+          <Button
+            className="button"
+            number={"M"}
+            onClick={() => numberAdd("1000")}
+          />
+          <Button className="button" number={"+"} onClick={() => opAdd(SUM)} />
+          <Button
+            className="button"
+            number={"-"}
+            onClick={() => opAdd(DECREASE)}
+            style={{ borderRadius: "0 0 0 1rem" }}
+          />
+          <Button
+            className="button"
+            number={"*"}
+            onClick={() => opAdd(MULTIPLY)}
+          />
+          <Button
+            className="button"
+            number={"/"}
+            onClick={() => opAdd(SHARE)}
+          />
+          <Button
+            className="button"
+            number={"="}
+            onClick={() => calculateAction()}
+            style={{ borderRadius: "0 0 1rem 0" }}
+          />
+          <Button
+            className="button"
+            number={"RST"}
+            style={{
+              marginTop: ".5rem",
+              width: "6.5rem",
+              height: "6.5rem",
+              borderRadius: "5rem",
+              background: "#aa0000",
+              borderColor: "#312c3b",
+            }}
+            onClick={() => clean()}
+          />
+          <Button className="button disabled" />
+          <Button className="button disabled" />
+          <div className="logo-bottom">
+            <img src="./logopccalculadoras.png" alt="" />
+          </div>
         </div>
       </div>
-      <div className="buttons">
-        <Button number={"I"} onClick={() => numberAdd("1")} />
-        <Button number={"V"} onClick={() => numberAdd("5")} />
-        <Button number={"X"} onClick={() => numberAdd("10")} />
-        <Button number={"L"} onClick={() => numberAdd("50")} />
-        <Button number={"C"} onClick={() => numberAdd("100")} />
-        <Button number={"D"} onClick={() => numberAdd("500")} />
-        <Button number={"M"} onClick={() => numberAdd("1000")} />
-        <Button number={"+"} onClick={() => opAdd(SUM)} />
-        <Button number={"-"} onClick={() => opAdd(DECREASE)} />
-        <Button number={"*"} onClick={() => opAdd(MULTIPLY)} />
-        <Button number={"/"} onClick={() => opAdd(SHARE)} />
-        <Button number={"="} onClick={() => calculateAction()} />
-        <Button number={"RST"} onClick={() => clean()} />
-      </div>
-    </div>
+    </>
   );
 }
