@@ -2,8 +2,41 @@ import React, { useState } from "react";
 import Display from "./display";
 import Button from "./button";
 import MathFunctions from "../../utils/math-functions";
-
+import "../../calculator.css";
 export default function RomanCalculator(props) {
+  function convertToRoman() {
+    let arabic = displayNumber;
+    let roman = "";
+    const arabicArray = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1];
+    const romanArray = [
+      "M",
+      "CM",
+      "D",
+      "CD",
+      "C",
+      "XC",
+      "L",
+      "XL",
+      "X",
+      "IX",
+      "V",
+      "IV",
+      "I",
+    ];
+    if (arabic === "0") {
+      roman = "NULO";
+      return roman;
+    }
+    if (arabic !== 0) {
+      for (let i = 0; i < arabicArray.length; i++) {
+        while (arabicArray[i] <= arabic) {
+          roman += romanArray[i];
+          arabic -= arabicArray[i];
+        }
+      }
+      return roman;
+    }
+  }
   const [
     calculate,
     numberConcat,
@@ -13,7 +46,6 @@ export default function RomanCalculator(props) {
     SHARE,
   ] = MathFunctions();
   const [displayNumber, setDisplayNumber] = useState("0");
-  const [displayRoman, setDisplayRoman] = useState("NULO");
   const [n1, setN1] = useState("0");
   const [n2, setN2] = useState(null);
   const [op, setOp] = useState(null);
@@ -27,26 +59,21 @@ export default function RomanCalculator(props) {
       result = numberConcat(n2, number);
       setN2(result);
     }
-// nova implementação para concatenação de Romanos
-    if (result.length == 2 && result.indexOf(1) == 0 && result.indexOf(0) == 1) {
-      setDisplayRoman(result.replace("1", "X").replace("0",""));
-    } else {
-      setDisplayRoman(result)
-    }
+    setDisplayNumber(result);
   }
 
   function opAdd(op) {
     if (op !== null) {
       setOp(op);
+      calculateAction();
       return;
     }
+
     if (n2 !== null) {
       const result = calculate(parseInt(n1), parseInt(n2), op);
       setOp(op);
-      setN1(result.toString());
+      setN1(result);
       setN2(null);
-      setDisplayNumber(result.toString());
-     
     }
   }
 
@@ -54,51 +81,52 @@ export default function RomanCalculator(props) {
     if (n2 === null) {
       return;
     }
-    const result = calculate(parseInt(n1), parseInt(n2), op).toString();
-
-    if (result.length == 2 && result.indexOf('1') == 0) {
-      setDisplayRoman(result.replace("1", "X").replace("0",""));
+    const result = calculate(parseInt(n1), parseInt(n2), op);
+    // if(result > 0 && op !== null) {
+    //   setDisplayNumber('0')
+    // }
+    if (result > 0) {
+      setN1(result)
+      setN2(null)
+      setDisplayNumber(result);
     } else {
-      setDisplayRoman(result)
+      setDisplayNumber("Número negativo inválido.");
     }
-
-    setDisplayNumber(result);
+  
   }
   function clean() {
     setDisplayNumber("0");
-    setDisplayRoman("NULO");
+
     setN1("0");
     setN2(null);
     setOp(null);
   }
 
   return (
-    <div className="container">
-      <Display
-        children={displayRoman
-          .toString()
-          .replaceAll(1000, "M")
-          .replaceAll(500, "D")
-          .replaceAll(100, "C")
-          .replaceAll(50, "L")
-          .replaceAll(10, "X")
-          .replaceAll(5, "V")
-          .replaceAll(1, "I")}
-      />
-      <Display children={displayNumber} />
-      <Button number={"I"} onClick={() => numberAdd("1")} />
-      <Button number={"V"} onClick={() => numberAdd("5")} />
-      <Button number={"X"} onClick={() => numberAdd("10")} />
-      <Button number={"L"} onClick={() => numberAdd("50")} />
-      <Button number={"C"} onClick={() => numberAdd("100")} />
-      <Button number={"D"} onClick={() => numberAdd("500")} />
-      <Button number={"M"} onClick={() => numberAdd("1000")} />
-      <Button number={"+"} onClick={() => opAdd(SUM)} />
-      <Button number={"-"} onClick={() => opAdd(DECREASE)} />
-      <Button number={"*"} onClick={() => opAdd(MULTIPLY)} />
-      <Button number={"/"} onClick={() => opAdd(SHARE)} />
-      <Button number={"="} onClick={() => calculateAction()} />
-      <Button number={"RESET"} onClick={() => clean()} />
+    <div className="calculator">
+      <div className="calculator-displays">
+        <div className="roman-display">
+          <Display children={convertToRoman()} />
+        </div>
+        <div className="arabic-display">
+          <Display children={displayNumber} />
+        </div>
+      </div>
+      <div className="buttons">
+        <Button number={"I"} onClick={() => numberAdd("1")} />
+        <Button number={"V"} onClick={() => numberAdd("5")} />
+        <Button number={"X"} onClick={() => numberAdd("10")} />
+        <Button number={"L"} onClick={() => numberAdd("50")} />
+        <Button number={"C"} onClick={() => numberAdd("100")} />
+        <Button number={"D"} onClick={() => numberAdd("500")} />
+        <Button number={"M"} onClick={() => numberAdd("1000")} />
+        <Button number={"+"} onClick={() => opAdd(SUM)} />
+        <Button number={"-"} onClick={() => opAdd(DECREASE)} />
+        <Button number={"*"} onClick={() => opAdd(MULTIPLY)} />
+        <Button number={"/"} onClick={() => opAdd(SHARE)} />
+        <Button number={"="} onClick={() => calculateAction()} />
+        <Button number={"RST"} onClick={() => clean()} />
+      </div>
     </div>
   );
 }

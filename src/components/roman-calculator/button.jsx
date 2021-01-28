@@ -4,7 +4,7 @@ export default function Button(props) {
     
 
     return (
-        <div className='roman-button'>
+        <div className='button'>
             <button type='button' onClick={props.onClick}>{props.number}</button>
         </div>
     )
