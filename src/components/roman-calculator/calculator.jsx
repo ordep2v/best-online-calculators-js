@@ -109,7 +109,8 @@ export default function RomanCalculator(props) {
         <div className="calculator-displays">
           <div className="display roman-display">
             {displayNumber === errorText && (
-              <Display children="Algum problema aconteceu" />
+              
+              <Display><div></div><div>*Algum problema aconteceu*</div></Display>
             )}
             {displayNumber && displayNumber !== errorText && (
               <Display>
