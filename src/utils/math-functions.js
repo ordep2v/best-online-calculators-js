@@ -35,5 +35,8 @@ export default function MathFunctions() {
     }
     return currentNumber + numConcat;
   }
+
+
+  
   return [calculate, numberConcat, SUM, DECREASE, MULTIPLY, SHARE];
 }

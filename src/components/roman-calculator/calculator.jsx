@@ -5,7 +5,7 @@ import MathFunctions from "../../utils/math-functions";
 import "../../calculator.css";
 
 export default function RomanCalculator(props) {
-  let errorText = "*Número negativo inválido*";
+  const errorText = "*Insira valores válidos*";
   function convertToRoman() {
     let arabic = displayNumber;
     let roman = "";
@@ -63,6 +63,10 @@ export default function RomanCalculator(props) {
       setN2(result);
     }
     setDisplayNumber(result);
+    // if (convertToRoman().length >= 12) {
+    //   clean();
+    //   setDisplayNumber(errorText);
+    // }
   }
 
   function opAdd(op) {
@@ -85,12 +89,14 @@ export default function RomanCalculator(props) {
       return;
     }
     const result = calculate(parseInt(n1), parseInt(n2), op);
-    if (result > 0) {
+    if (result > 0 && Number.isInteger(result)) {
+      console.log(convertToRoman().length)
       setN1(result);
       setN2(null);
       setDisplayNumber(parseInt(result));
       setDisplayOp("");
     } else {
+      clean();
       setDisplayNumber(errorText);
       setDisplayOp(null);
     }
@@ -107,25 +113,38 @@ export default function RomanCalculator(props) {
     <>
       <div className="calculator">
         <div className="calculator-displays">
-          <div className="display roman-display">
+          <div className="display">
             {displayNumber === errorText && (
-              
-              <Display><div></div><div>*Algum problema aconteceu*</div></Display>
+              <Display>
+                <div className='roman-display'>*Algum problema aconteceu*</div>
+              </Display>
             )}
-            {displayNumber && displayNumber !== errorText && (
+
+            {displayNumber !== errorText && (
               <Display>
                 <div></div>
-                <div>{convertToRoman()}</div>
+                <div className='roman-display' style={{ fontSize: "2.5rem", fontWeight: "bold" }}>
+                  {convertToRoman()}
+                </div>
               </Display>
             )}
           </div>
           <div className="display arabic-display">
-            <Display>
-              <div>
-                <strong>{displayOp}</strong>
-              </div>
-              <div>{displayNumber}</div>
-            </Display>
+            {displayNumber === errorText && (
+              <Display>
+                <div>{displayNumber}</div>
+              </Display>
+            )}
+            {displayNumber !== errorText && (
+              <Display>
+                <div style={{ fontSize: "3rem" }}>
+                  <strong>{displayOp}</strong>
+                </div>
+                <div style={{ fontSize: "2.5rem", fontWeight: "bold" }}>
+                  {displayNumber}
+                </div>
+              </Display>
+            )}
           </div>
         </div>
         <div className="buttons">
@@ -205,7 +224,10 @@ export default function RomanCalculator(props) {
           <Button className="button disabled" />
           <Button className="button disabled" />
           <div className="logo-bottom">
-            <img src="./logopccalculadoras.png" alt="" />
+            <img
+              src="./logopccalculadoras.png"
+              alt="logo pedro cunha calculadoras"
+            />
           </div>
         </div>
       </div>
