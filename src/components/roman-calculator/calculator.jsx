@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Display from "./display";
 import Button from "./button";
 import MathFunctions from "../../utils/math-functions";
-import "../../calculator.css";
+import "../../app.css";
 
 export default function RomanCalculator(props) {
   const errorText = "*Insira valores válidos*";
@@ -90,7 +90,7 @@ export default function RomanCalculator(props) {
     }
     const result = calculate(parseInt(n1), parseInt(n2), op);
     if (result > 0 && Number.isInteger(result)) {
-      console.log(convertToRoman().length)
+      console.log(convertToRoman().length);
       setN1(result);
       setN2(null);
       setDisplayNumber(parseInt(result));
@@ -110,127 +110,125 @@ export default function RomanCalculator(props) {
   }
 
   return (
-    <>
-      <div className="calculator">
-        <div className="calculator-displays">
-          <div className="display">
-            {displayNumber === errorText && (
-              <Display>
-                <div className='roman-display'>*Algum problema aconteceu*</div>
-              </Display>
-            )}
+    <div className="calculator">
+      <div className="calculator-displays">
+        <div className="display">
+          {displayNumber === errorText && (
+            <Display>
+              <div className="roman-display">*Algum problema aconteceu*</div>
+            </Display>
+          )}
 
-            {displayNumber !== errorText && (
-              <Display>
-                <div></div>
-                <div className='roman-display' style={{ fontSize: "2.5rem", fontWeight: "bold" }}>
-                  {convertToRoman()}
-                </div>
-              </Display>
-            )}
-          </div>
-          <div className="display arabic-display">
-            {displayNumber === errorText && (
-              <Display>
-                <div>{displayNumber}</div>
-              </Display>
-            )}
-            {displayNumber !== errorText && (
-              <Display>
-                <div style={{ fontSize: "3rem" }}>
-                  <strong>{displayOp}</strong>
-                </div>
-                <div style={{ fontSize: "2.5rem", fontWeight: "bold" }}>
-                  {displayNumber}
-                </div>
-              </Display>
-            )}
-          </div>
+          {displayNumber !== errorText && (
+            <Display>
+              <div></div>
+              <div
+                className="roman-display"
+                style={{ fontSize: "2.5rem", fontWeight: "bold" }}
+              >
+                {convertToRoman()}
+              </div>
+            </Display>
+          )}
         </div>
-        <div className="buttons">
-          <Button
-            className="button"
-            number={"I"}
-            onClick={() => numberAdd("1")}
-            style={{ borderRadius: "1rem 0 0 0" }}
-          />
-          <Button
-            className="button"
-            number={"V"}
-            onClick={() => numberAdd("5")}
-          />
-          <Button
-            className="button"
-            number={"X"}
-            onClick={() => numberAdd("10")}
-          />
-          <Button
-            className="button"
-            number={"L"}
-            onClick={() => numberAdd("50")}
-            style={{ borderRadius: "0 1rem 0 0" }}
-          />
-          <Button
-            className="button"
-            number={"C"}
-            onClick={() => numberAdd("100")}
-          />
-          <Button
-            className="button"
-            number={"D"}
-            onClick={() => numberAdd("500")}
-          />
-          <Button
-            className="button"
-            number={"M"}
-            onClick={() => numberAdd("1000")}
-          />
-          <Button className="button" number={"+"} onClick={() => opAdd(SUM)} />
-          <Button
-            className="button"
-            number={"-"}
-            onClick={() => opAdd(DECREASE)}
-            style={{ borderRadius: "0 0 0 1rem" }}
-          />
-          <Button
-            className="button"
-            number={"*"}
-            onClick={() => opAdd(MULTIPLY)}
-          />
-          <Button
-            className="button"
-            number={"/"}
-            onClick={() => opAdd(SHARE)}
-          />
-          <Button
-            className="button"
-            number={"="}
-            onClick={() => calculateAction()}
-            style={{ borderRadius: "0 0 1rem 0" }}
-          />
-          <Button
-            className="button"
-            number={"RST"}
-            style={{
-              marginTop: ".5rem",
-              width: "6.5rem",
-              height: "6.5rem",
-              borderRadius: "5rem",
-              background: "#aa0000",
-              borderColor: "#312c3b",
-            }}
-            onClick={() => clean()}
-          />
-          <Button className="button disabled" />
-          <Button className="button disabled" />
-          <div className="logo-bottom">
-            <img
-              src="./logopccalculadoras.png"
-              alt="logo pedro cunha calculadoras"
-            />
-          </div>
+        <div className="display arabic-display">
+          {displayNumber === errorText && (
+            <Display>
+              <div>{displayNumber}</div>
+            </Display>
+          )}
+          {displayNumber !== errorText && (
+            <Display>
+              <div style={{ fontSize: "3rem" }}>
+                <strong>{displayOp}</strong>
+              </div>
+              <div style={{ fontSize: "2.5rem", fontWeight: "bold" }}>
+                {displayNumber}
+              </div>
+            </Display>
+          )}
         </div>
       </div>
-    </>
+      <div className="buttons">
+        <Button
+          className="button"
+          number={"I"}
+          onClick={() => numberAdd("1")}
+          style={{ borderRadius: "1rem 0 0 0" }}
+        />
+        <Button
+          className="button"
+          number={"V"}
+          onClick={() => numberAdd("5")}
+        />
+        <Button
+          className="button"
+          number={"X"}
+          onClick={() => numberAdd("10")}
+        />
+        <Button
+          className="button"
+          number={"L"}
+          onClick={() => numberAdd("50")}
+          style={{ borderRadius: "0 1rem 0 0" }}
+        />
+        <Button
+          className="button"
+          number={"C"}
+          onClick={() => numberAdd("100")}
+        />
+        <Button
+          className="button"
+          number={"D"}
+          onClick={() => numberAdd("500")}
+        />
+        <Button
+          className="button"
+          number={"M"}
+          onClick={() => numberAdd("1000")}
+        />
+        <Button className="button" number={"+"} onClick={() => opAdd(SUM)} />
+        <Button
+          className="button"
+          number={"-"}
+          onClick={() => opAdd(DECREASE)}
+          style={{ borderRadius: "0 0 0 1rem" }}
+        />
+        <Button
+          className="button"
+          number={"*"}
+          onClick={() => opAdd(MULTIPLY)}
+        />
+        <Button className="button" number={"/"} onClick={() => opAdd(SHARE)} />
+        <Button
+          className="button"
+          number={"="}
+          onClick={() => calculateAction()}
+          style={{ borderRadius: "0 0 1rem 0" }}
+        />
+        <Button
+          id="reset-button"
+          className="button"
+          number={"RST"}
+          style={{
+            marginTop: ".5rem",
+            width: "6.5rem",
+            height: "6.5rem",
+            borderRadius: "5rem",
+            background: "#aa0000",
+            borderColor: "#312c3b",
+          }}
+          onClick={() => clean()}
+        />
+        <Button className="button disabled" />
+        <Button className="button disabled" />
+        <div className="logo-bottom">
+          <img
+            src="./logopccalculadoras.png"
+            alt="logo pedro cunha calculadoras"
+          />
+        </div>
+      </div>
+    </div>
   );
 }
