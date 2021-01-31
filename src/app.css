@@ -20,11 +20,13 @@ body {
     "main"
     "footer";
   grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr 1fr;
+  grid-template-rows: auto 1fr 10rem;
   height: 100%;
 }
 main {
   grid-area: main;
+  display: flex;
+  flex-direction: column;
   height: 100%;
   justify-content: center;
   background: linear-gradient(
@@ -41,23 +43,7 @@ header {
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  height: 15rem;
-  background: linear-gradient(
-      180deg,
-      rgba(75, 80, 138, 0.49) 99.99%,
-      rgba(255, 255, 255, 0) 100%
-    ),
-    #06092b;
-}
-footer {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  grid-area: footer;
   height: 100%;
-  color: #f3f3ff;
   background: linear-gradient(
       180deg,
       rgba(75, 80, 138, 0.49) 99.99%,
@@ -65,46 +51,6 @@ footer {
     ),
     #06092b;
 }
-.footer-text {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-a {
-  text-decoration: none;
-  color: white;
-}
-
-
-
-.calculator-wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-
-  max-width: 100%;
-  margin-bottom: 0;
-  padding-top: 14rem;
-  padding-bottom: 10rem;
-  background-color: #f3f3ff;
-  clip-path: polygon(0 0, 100% 9%, 100% 100%, 0 92%);
-}
-/* Calculator */
-.calculator {
-  margin-bottom: 5rem;
-  display: flex;
-  max-width: 31.9rem;
-  flex-direction: column;
-  border-style: solid;
-  background: #312c3b;
-  border-color: #312c3b;
-  border-width: 13px;
-  border-top-width: 4rem;
-  border-radius: 2rem;
-}
-
 .button {
   color: #ffffff;
   display: flex;
@@ -139,7 +85,88 @@ a {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
 }
+footer {
+  width: 100%;
+  height: 20rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  grid-area: footer;
+  color: #f3f3ff;
+  background: linear-gradient(
+      180deg,
+      rgba(75, 80, 138, 0.49) 99.99%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    #06092b;
+}
+.footer-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.footer-links {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-evenly;
+  margin-bottom: 3rem;
+}
+#footer-link {
+  width: 10rem;
+  height: 100%;
+}
+.footer-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.footer-links > div {
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+#root {
+  width: 100%;
+}
+
+.calculator-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  max-width: 100%;
+  margin-bottom: 0;
+  padding-top: 5rem;
+  padding-bottom: 10rem;
+  background-color: #f3f3ff;
+}
+/* Calculator */
+.calculator {
+  margin-bottom: 5rem;
+  display: flex;
+  max-width: 31.9rem;
+  flex-direction: column;
+  border-style: solid;
+  background: #312c3b;
+  border-color: #312c3b;
+  border-width: 13px;
+  border-top-width: 4rem;
+  border-radius: 2rem;
+}
+
 .calculator-displays {
   border-width: 5px;
   border-style: solid;
@@ -177,7 +204,10 @@ a {
 
 .logo-header {
   align-self: center;
-  height: 50%;
+  height: 100%;
+}
+.logo-header > img {
+  height: 20rem;
 }
 .logo-bottom {
   max-width: 6rem;
@@ -293,7 +323,6 @@ input#input-calculator-preferences {
   text-overflow: inherit;
   color: black;
   text-shadow: 0.5px 0.6px 0.5px #01101a;
-
 }
 .input-result {
   background-color: rgb(236, 234, 234);
@@ -377,7 +406,7 @@ select {
 .bhaskara-calculator {
   display: flex;
   color: rgb(235, 230, 230);
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   font-size: 2rem;
   font-weight: bold;
   flex-direction: column;
@@ -404,11 +433,11 @@ select {
   text-overflow: clip;
 }
 
-.bhaskara-display>div {
+.bhaskara-display > div {
   margin-left: 2rem;
   margin-top: 2rem;
 }
-.bhaskara-display>div>div {
+.bhaskara-display > div > div {
   width: 100%;
   margin-top: 2rem;
 }
@@ -432,5 +461,11 @@ select {
 }
 .bhaskara-buttons {
   display: flex;
+}
 
+/* Media Queries */
+@media (max-width: 900px) {
+  .bhaskara-calculator {
+    width: 43rem;
+  }
 }

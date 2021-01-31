@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Display from "./display";
-import Button from "./button";
+import Button from "../../template/button";
 import MathFunctions from "../../utils/math-functions";
 import "../../app.css";
 
@@ -63,10 +63,6 @@ export default function RomanCalculator(props) {
       setN2(result);
     }
     setDisplayNumber(result);
-    // if (convertToRoman().length >= 12) {
-    //   clean();
-    //   setDisplayNumber(errorText);
-    // }
   }
 
   function opAdd(op) {

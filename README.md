@@ -1,70 +1,39 @@
-# Getting Started with Create React App
+## Aplicação contendo três tipos de calculadoras em Javascript
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Criação de três calculadoras utilizando:
+- ReactJS
 
-## Available Scripts
+## O que foi desenvolvido?
 
-In the project directory, you can run:
+- Calculadora de números romanos com botões e display
+- Calculadora "mista" com inputs, select e display.
+- Calculadora de equação de segundo grau, mostrando "DELTA,X1,X2"
 
-### `npm start`
+## Regras de cada calculadora
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# PC Button Calculator
+- Aceita somente números romanos;
+- Só aceita resultados inteiros e positivos;
+- Ao concatenar valores no mesmo campo, os mesmos são somados automaticamente e colocados em ordem. Ex: (N1 = X) + (N2 = XXXX) = L;
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+# PC Mixed Input Calculator
+- Aceita números romanos e arábicos;
+- Independente do tipo de algarismo, a resposta sempre virá dos dois tipos.
+- Não aceita valores negativos como resposta;
+- Se um input contiver número arábico, o outro deverá ser arábico também, senão a operação será inválida.
+- Se um input contiver número romano, o outro deverá ser romano também, senão a operação será inválida.
+- Se no mesmo input houverem números romanos e numeros arábicos, a operação levará em conta somente os números romanos.
+- Caso o resultado de uma operação entre números arábicos não resulte em inteiros, a resposta em números romanos será arredondada.
 
-### `npm test`
+# PC Bhaskara Magic Board
+- Aceita somente valores em algarismos arábicos.
+- Ao informar os valores de (a),(b) e (c) certifique-se que DELTA terá um resultado positivo.
+- Caso DELTA for negativo, será retornado um erro, pois não há raízes com DELTA negativo.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Imagens do projeto:
+![PC Calculadora Button](https://i.ibb.co/JQsbW7y/pcromanbuttoncalcgit.png)
+![PC Mixed Input Calc](https://i.ibb.co/NYVBG7z/pcinputmixedcalgit.png)
+![PC Bhaskara Magic Board](https://i.ibb.co/zGfwmV7/pcbhaskaramagicgit.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Esta aplicação foi desenvolvida como resposta ao desafio da VilaApps.

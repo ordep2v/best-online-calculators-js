@@ -1,30 +1,16 @@
 import "./app.css";
-import Header from "./template/header";
-
-import RomanCalculator from "./components/roman-calculator/calculator";
-import Content from "./template/content";
-import Footer from "./template/footer";
-import InputCalculator from "./components/roman-calculator/input-calculator";
-import Bhaskara from "./components/bhaskara/bhaskara";
+import { BrowserRouter, Route } from "react-router-dom";
+import RomanCalculators from "./pages/roman-calculators";
+import BhaskaraCalculators from "./pages/bhaskara-calculators";
 function App() {
   return (
-    <div className="grid-container">
-      <Header />
-      <Content>
-        <div className="calculator-wrapper">
-          <div>
-            <RomanCalculator />{" "}
-          </div>
-          <div>
-            <InputCalculator />
-          </div>
-          <div>
-            <Bhaskara />
-          </div>
-        </div>
-      </Content>
-      <Footer />
-    </div>
+    <BrowserRouter>
+      
+        <Route path="/" exact component={RomanCalculators}></Route>
+
+        <Route path="/bhaskara-calculators" exact component={BhaskaraCalculators}></Route>
+
+    </BrowserRouter>
   );
 }
 

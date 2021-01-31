@@ -1,5 +1,5 @@
-import React, {useState } from "react";
-import Button from "../roman-calculator/button";
+import React, { useState } from "react";
+import Button from "../../template/button";
 
 export default function Bhaskara() {
   const errorText = "*Erro* Delta negativo.";
@@ -30,9 +30,6 @@ export default function Bhaskara() {
   const handleChange = (e) => {
     setValuesEq({ ...valuesEq, [e.target.name]: e.target.value });
   };
-  function callback() {
-    console.log(delta);
-  }
   function displayClean() {
     setDisplayEq("");
     setValuesEq({ valueB: 0 });
@@ -45,7 +42,6 @@ export default function Bhaskara() {
     deltaFind();
     findTwoX();
     delta === null || (delta === "" && setDisplayEq(errorText));
-    callback();
   }
   return (
     <>
@@ -53,7 +49,7 @@ export default function Bhaskara() {
         <div className="bhaskara-display">
           {!valuesEq.valueA && (
             <>
-              <div>Complete a equação: </div>
+              <div>Complete a equação de 2º grau: </div>
               <div>(a)x²+(b)x+(c) = 0</div>
             </>
           )}
@@ -65,13 +61,13 @@ export default function Bhaskara() {
                 {valuesEq.valueC}) = 0
               </div>
             </>
-              )}
-              {(delta < 0)  && (
-                <>
-                  <div>{displayEq}</div>
-                  <div></div>
-                </>
-              )}
+          )}
+          {delta < 0 && (
+            <>
+              <div>{displayEq}</div>
+              <div></div>
+            </>
+          )}
           {delta > 0 && (
             <>
               <div>

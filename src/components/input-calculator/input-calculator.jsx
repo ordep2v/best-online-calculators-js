@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Button from "./button";
+import Button from "../../template/button";
 import "../../app.css";
 
 const InputCalculator = () => {
@@ -110,8 +110,30 @@ const InputCalculator = () => {
       result = eval(`${values.num1} ${values.operation} ${values.num2}`);
     } else {
       result = eval(
-        `${toSum(values.num1)} ${values.operation.toString()} ${toSum(
+        `${toSum(
+          values.num1
+            .replace(9, "")
+            .replace(8, "")
+            .replace(7, "")
+            .replace(6, "")
+            .replace(5, "")
+            .replace(4, "")
+            .replace(3, "")
+            .replace(2, "")
+            .replace(1, "")
+            .replace(0, "")
+        )} ${values.operation.toString()} ${toSum(
           values.num2
+            .replace(9, "")
+            .replace(8, "")
+            .replace(7, "")
+            .replace(6, "")
+            .replace(5, "")
+            .replace(4, "")
+            .replace(3, "")
+            .replace(2, "")
+            .replace(1, "")
+            .replace(0, "")
         )}`
       );
     }
@@ -128,12 +150,6 @@ const InputCalculator = () => {
 
   function cleanDisplay() {
     setResultNumber("0");
-  }
-
-  function callback() {
-    console.log();
-    console.log(values.operation);
-    console.log(isNaN(values.num1));
   }
 
   const handleChange = (e) => {
@@ -155,8 +171,9 @@ const InputCalculator = () => {
     } else {
       setResultNumber(errorText);
     }
-    callback();
   };
+
+
 
   return (
     <div className="input-calculator" aria-label="calculadora por input">
@@ -182,14 +199,60 @@ const InputCalculator = () => {
               <>
                 <div className="input-content input">
                   <div>
-                    {values.num1.toUpperCase()}
+                    {values.num1
+                      .toUpperCase()
+                      .replace(9, "")
+                      .replace(8, "")
+                      .replace(7, "")
+                      .replace(6, "")
+                      .replace(5, "")
+                      .replace(4, "")
+                      .replace(3, "")
+                      .replace(2, "")
+                      .replace(1, "")
+                      .replace(0, "")}
                     {values.operation}
-                    {values.num2.toUpperCase()} ={" "}
+                    {values.num2
+                      .toUpperCase()
+                      .replace(9, "")
+                      .replace(8, "")
+                      .replace(7, "")
+                      .replace(6, "")
+                      .replace(5, "")
+                      .replace(4, "")
+                      .replace(3, "")
+                      .replace(2, "")
+                      .replace(1, "")
+                      .replace(0, "")}{" "}
+                    ={" "}
                     {convertToRoman(
                       eval(
                         `${toSum(
                           values.num1
-                        )} ${values.operation.toString()} ${toSum(values.num2)}`
+                            .toUpperCase()
+                            .replace(9, "")
+                            .replace(8, "")
+                            .replace(7, "")
+                            .replace(6, "")
+                            .replace(5, "")
+                            .replace(4, "")
+                            .replace(3, "")
+                            .replace(2, "")
+                            .replace(1, "")
+                            .replace(0, "")
+                        )} ${values.operation.toString()} ${toSum(
+                          values.num2
+                            .replace(9, "")
+                            .replace(8, "")
+                            .replace(7, "")
+                            .replace(6, "")
+                            .replace(5, "")
+                            .replace(4, "")
+                            .replace(3, "")
+                            .replace(2, "")
+                            .replace(1, "")
+                            .replace(0, "")
+                        )}`
                       )
                     )}
                   </div>
@@ -198,7 +261,29 @@ const InputCalculator = () => {
                     {eval(
                       `${toSum(
                         values.num1
-                      )} ${values.operation.toString()} ${toSum(values.num2)}`
+                          .replace(9, "")
+                          .replace(8, "")
+                          .replace(7, "")
+                          .replace(6, "")
+                          .replace(5, "")
+                          .replace(4, "")
+                          .replace(3, "")
+                          .replace(2, "")
+                          .replace(1, "")
+                          .replace(0, "")
+                      )} ${values.operation.toString()} ${toSum(
+                        values.num2
+                          .replace(9, "")
+                          .replace(8, "")
+                          .replace(7, "")
+                          .replace(6, "")
+                          .replace(5, "")
+                          .replace(4, "")
+                          .replace(3, "")
+                          .replace(2, "")
+                          .replace(1, "")
+                          .replace(0, "")
+                      )}`
                     )}
                   </div>
                 </div>
