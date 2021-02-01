@@ -20,6 +20,7 @@
 - Aceita números romanos e arábicos;
 - Independente do tipo de algarismo, a resposta sempre virá dos dois tipos.
 - Não aceita valores negativos como resposta;
+- Ao concatenar valores no mesmo campo, os mesmos são somados automaticamente e colocados em ordem. Ex: (N1 = X) + (N2 = XXXX) = L;
 - Se um input contiver número arábico, o outro deverá ser arábico também, senão a operação será inválida.
 - Se um input contiver número romano, o outro deverá ser romano também, senão a operação será inválida.
 - Se no mesmo input houverem números romanos e numeros arábicos, a operação levará em conta somente os números romanos.
